@@ -1,0 +1,21 @@
+{
+  "database": {
+    "domain": "localhost",
+    "port": 3306,
+    "schema": "lolwiki",
+    "user": "root",
+    "pass": "",
+    "table": {
+      "wallpaper": "wallpaper"
+    }
+  },
+  "setting": {
+    "timeCheck": 1
+  },
+  "logger": {
+    "isLog": true,
+    "isFile": true,
+    "level": "debug",
+    "directory": "/asset/out/log"
+  }
+}

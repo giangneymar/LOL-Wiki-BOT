@@ -1,0 +1,137 @@
+[ INFO] [2022-04-21 09:08:26] [Main_main(28)] : ***********************************************************
+[ INFO] [2022-04-21 09:08:26] [Main_main(29)] : start schedules
+[ INFO] [2022-04-21 09:08:26] [Main$BotControl_<init>(44)] : creating main schedule
+[DEBUG] [2022-04-21 09:08:26] [Main$BotControl_<init>(49)] : delay[ 0 ] - period[ 60000 ]
+[ INFO] [2022-04-21 09:08:26] [Main$BotControl_<init>(51)] : creating bots
+[ INFO] [2022-04-21 09:08:26] [bot.WallpaperBot_<init>(10)] : create
+[ INFO] [2022-04-21 09:08:26] [Main$BotControl_<init>(60)] : create bot[ bot.WallpaperBot ] success
+[ INFO] [2022-04-21 09:08:26] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:08:26] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[0] - rest[900000] - now[1650506906602]
+[ INFO] [2022-04-21 09:08:26] [bot.BaseBot_run(24)] : running
+[ INFO] [2022-04-21 09:08:26] [bot.WallpaperBot_run(28)] : prepare
+[ INFO] [2022-04-21 09:08:26] [bot.BaseBot_complete(29)] : complete
+[ INFO] [2022-04-21 09:08:26] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(17)] : crawl wallpaper
+[ INFO] [2022-04-21 09:08:28] [crawler.CrawlWallpaper_listWallpaperOnWeb(32)] : list wallpaper has 24 item
+[ INFO] [2022-04-21 09:08:28] [bot.BaseBotDatabase_delete(45)] : clear all data table[wallpaper]
+[ INFO] [2022-04-21 09:08:28] [bot.BaseBotDatabase_insert(22)] : insert data into table[wallpaper]
+[ INFO] [2022-04-21 09:42:08] [Main_main(28)] : ***************************************************************************************************
+[ INFO] [2022-04-21 09:42:08] [Main_main(29)] : start schedules
+[ INFO] [2022-04-21 09:42:08] [Main$BotControl_<init>(44)] : creating main schedule
+[DEBUG] [2022-04-21 09:42:08] [Main$BotControl_<init>(49)] : delay[ 0 ] - period[ 60000 ]
+[ INFO] [2022-04-21 09:42:08] [Main$BotControl_<init>(51)] : creating bots
+[ INFO] [2022-04-21 09:42:08] [bot.WallpaperBot_<init>(10)] : create
+[ INFO] [2022-04-21 09:42:08] [Main$BotControl_<init>(60)] : create bot[ bot.WallpaperBot ] success
+[ INFO] [2022-04-21 09:42:08] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:42:08] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[0] - rest[900000] - now[1650508928919]
+[ INFO] [2022-04-21 09:42:08] [bot.BaseBot_run(24)] : running
+[ INFO] [2022-04-21 09:42:08] [bot.WallpaperBot_run(29)] : prepare
+[ INFO] [2022-04-21 09:42:08] [bot.BaseBot_complete(29)] : complete
+[ INFO] [2022-04-21 09:42:08] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(17)] : start crawl
+[ INFO] [2022-04-21 09:42:08] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(18)] : crawl wallpaper
+[ INFO] [2022-04-21 09:42:10] [crawler.CrawlWallpaper_listWallpaperOnWeb(32)] : list wallpaper has 24 item
+[ INFO] [2022-04-21 09:42:10] [bot.BaseBotDatabase_delete(45)] : clear all data table[wallpaper]
+[ INFO] [2022-04-21 09:42:10] [bot.BaseBotDatabase_insert(22)] : insert data into table[wallpaper]
+[ INFO] [2022-04-21 09:43:08] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:43:08] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650508928925] - rest[900000] - now[1650508988922]
+[ INFO] [2022-04-21 09:44:08] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:44:08] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650508928925] - rest[900000] - now[1650509048921]
+[ INFO] [2022-04-21 09:45:08] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:45:08] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650508928925] - rest[900000] - now[1650509108921]
+[ INFO] [2022-04-21 09:46:08] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:46:08] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650508928925] - rest[900000] - now[1650509168921]
+[ INFO] [2022-04-21 09:47:08] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:47:08] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650508928925] - rest[900000] - now[1650509228922]
+[ INFO] [2022-04-21 09:48:08] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:48:08] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650508928925] - rest[900000] - now[1650509288922]
+[ INFO] [2022-04-21 09:49:33] [Main_main(28)] : ***************************************************************************************************
+[ INFO] [2022-04-21 09:49:33] [Main_main(29)] : start schedules
+[ INFO] [2022-04-21 09:49:33] [Main$BotControl_<init>(44)] : creating main schedule
+[DEBUG] [2022-04-21 09:49:33] [Main$BotControl_<init>(49)] : delay[ 0 ] - period[ 60000 ]
+[ INFO] [2022-04-21 09:49:33] [Main$BotControl_<init>(51)] : creating bots
+[ INFO] [2022-04-21 09:49:33] [bot.WallpaperBot_<init>(10)] : create
+[ INFO] [2022-04-21 09:49:33] [Main$BotControl_<init>(60)] : create bot[ bot.WallpaperBot ] success
+[ INFO] [2022-04-21 09:49:33] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:49:33] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[0] - rest[900000] - now[1650509373984]
+[ INFO] [2022-04-21 09:49:33] [bot.BaseBot_run(24)] : running
+[ INFO] [2022-04-21 09:49:33] [bot.WallpaperBot_run(29)] : prepare
+[ INFO] [2022-04-21 09:49:33] [bot.BaseBot_complete(29)] : complete
+[ INFO] [2022-04-21 09:49:33] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(17)] : start crawl
+[ INFO] [2022-04-21 09:49:33] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(18)] : crawl wallpaper
+[ INFO] [2022-04-21 09:49:35] [crawler.CrawlWallpaper_listWallpaperOnWeb(32)] : list wallpaper has 24 item
+[ INFO] [2022-04-21 09:49:35] [bot.BaseBotDatabase_delete(45)] : clear all data table[wallpaper]
+[ INFO] [2022-04-21 09:49:35] [bot.BaseBotDatabase_insert(22)] : insert data into table[wallpaper]
+[ INFO] [2022-04-21 09:50:33] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:50:33] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509373989] - rest[900000] - now[1650509433985]
+[ INFO] [2022-04-21 09:51:33] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:51:33] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509373989] - rest[900000] - now[1650509493985]
+[ INFO] [2022-04-21 09:52:33] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:52:33] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509373989] - rest[900000] - now[1650509553985]
+[ INFO] [2022-04-21 09:53:33] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:53:33] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509373989] - rest[900000] - now[1650509613985]
+[ INFO] [2022-04-21 09:54:33] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:54:33] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509373989] - rest[900000] - now[1650509673985]
+[ INFO] [2022-04-21 09:58:00] [Main_main(28)] : ***************************************************************************************************
+[ INFO] [2022-04-21 09:58:00] [Main_main(29)] : start schedules
+[ INFO] [2022-04-21 09:58:00] [Main$BotControl_<init>(44)] : creating main schedule
+[DEBUG] [2022-04-21 09:58:00] [Main$BotControl_<init>(49)] : delay[ 0 ] - period[ 60000 ]
+[ INFO] [2022-04-21 09:58:00] [Main$BotControl_<init>(51)] : creating bots
+[ INFO] [2022-04-21 09:58:01] [bot.WallpaperBot_<init>(10)] : create
+[ INFO] [2022-04-21 09:58:01] [Main$BotControl_<init>(60)] : create bot[ bot.WallpaperBot ] success
+[ INFO] [2022-04-21 09:58:01] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:58:01] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[0] - rest[900000] - now[1650509881050]
+[ INFO] [2022-04-21 09:58:01] [bot.BaseBot_run(24)] : running
+[ INFO] [2022-04-21 09:58:01] [bot.WallpaperBot_run(29)] : prepare
+[ INFO] [2022-04-21 09:58:01] [bot.BaseBot_complete(29)] : complete
+[ INFO] [2022-04-21 09:58:01] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(17)] : start crawl
+[ INFO] [2022-04-21 09:58:01] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(18)] : crawl wallpaper
+[ INFO] [2022-04-21 09:58:02] [crawler.CrawlWallpaper_listWallpaperOnWeb(32)] : list wallpaper has 24 item
+[ INFO] [2022-04-21 09:58:02] [bot.BaseBotDatabase_delete(45)] : clear all data table[wallpaper]
+[ INFO] [2022-04-21 09:58:02] [bot.BaseBotDatabase_insert(22)] : insert data into table[wallpaper]
+[ INFO] [2022-04-21 09:59:01] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 09:59:01] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509881056] - rest[900000] - now[1650509941050]
+[ INFO] [2022-04-21 10:00:01] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:00:01] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509881056] - rest[900000] - now[1650510001052]
+[ INFO] [2022-04-21 10:01:01] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:01:01] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509881056] - rest[900000] - now[1650510061052]
+[ INFO] [2022-04-21 10:02:01] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:02:01] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650509881056] - rest[900000] - now[1650510121053]
+[ INFO] [2022-04-21 10:02:21] [Main_main(28)] : ***************************************************************************************************
+[ INFO] [2022-04-21 10:02:21] [Main_main(29)] : start schedules
+[ INFO] [2022-04-21 10:02:21] [Main$BotControl_<init>(44)] : creating main schedule
+[DEBUG] [2022-04-21 10:02:21] [Main$BotControl_<init>(49)] : delay[ 0 ] - period[ 60000 ]
+[ INFO] [2022-04-21 10:02:21] [Main$BotControl_<init>(51)] : creating bots
+[ INFO] [2022-04-21 10:02:21] [bot.WallpaperBot_<init>(10)] : create
+[ INFO] [2022-04-21 10:02:21] [Main$BotControl_<init>(60)] : create bot[ bot.WallpaperBot ] success
+[ INFO] [2022-04-21 10:02:21] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:02:21] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[0] - rest[900000] - now[1650510141305]
+[ INFO] [2022-04-21 10:02:40] [Main_main(28)] : ***************************************************************************************************
+[ INFO] [2022-04-21 10:02:40] [Main_main(29)] : start schedules
+[ INFO] [2022-04-21 10:02:40] [Main$BotControl_<init>(44)] : creating main schedule
+[DEBUG] [2022-04-21 10:02:40] [Main$BotControl_<init>(49)] : delay[ 0 ] - period[ 60000 ]
+[ INFO] [2022-04-21 10:02:40] [Main$BotControl_<init>(51)] : creating bots
+[ INFO] [2022-04-21 10:02:40] [bot.WallpaperBot_<init>(10)] : create
+[ INFO] [2022-04-21 10:02:40] [Main$BotControl_<init>(60)] : create bot[ bot.WallpaperBot ] success
+[ INFO] [2022-04-21 10:02:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:02:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[0] - rest[900000] - now[1650510160264]
+[ INFO] [2022-04-21 10:02:40] [bot.BaseBot_run(24)] : running
+[ INFO] [2022-04-21 10:02:40] [bot.WallpaperBot_run(29)] : prepare
+[ INFO] [2022-04-21 10:02:40] [bot.BaseBot_complete(29)] : complete
+[ INFO] [2022-04-21 10:02:40] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(17)] : start crawl
+[ INFO] [2022-04-21 10:02:40] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(18)] : crawl wallpaper
+[ INFO] [2022-04-21 10:02:41] [crawler.CrawlWallpaper_listWallpaperOnWeb(32)] : list wallpaper has 24 item
+[ INFO] [2022-04-21 10:02:41] [bot.BaseBotDatabase_delete(45)] : clear all data table[wallpaper]
+[ INFO] [2022-04-21 10:02:41] [bot.BaseBotDatabase_insert(22)] : insert data into table[wallpaper]
+[ INFO] [2022-04-21 10:03:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:03:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650510160270] - rest[900000] - now[1650510220264]
+[ INFO] [2022-04-21 10:04:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:04:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650510160270] - rest[900000] - now[1650510280264]
+[ INFO] [2022-04-21 10:05:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:05:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650510160270] - rest[900000] - now[1650510340264]
+[ INFO] [2022-04-21 10:06:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:06:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650510160270] - rest[900000] - now[1650510400265]
+[ INFO] [2022-04-21 10:07:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:07:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650510160270] - rest[900000] - now[1650510460265]
+[ INFO] [2022-04-21 10:08:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:08:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650510160270] - rest[900000] - now[1650510520265]
+[ INFO] [2022-04-21 10:09:40] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-21 10:09:40] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650510160270] - rest[900000] - now[1650510580265]
