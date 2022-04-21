@@ -29,6 +29,8 @@ public class Main {
         appLogger.info("start schedules");
         BotControl botControl = new BotControl();
         botControl.run();
+        Server server = new Server();
+        server.API();
     }
 
     public static class BotControl {
@@ -63,7 +65,6 @@ public class Main {
                 }
             }
         }
-        //souttttttt
 
         void run() {
             timer.schedule(new TimerTask() {

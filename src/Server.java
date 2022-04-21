@@ -12,7 +12,7 @@ public class Server {
     public void API() {
         Spark.init();
 
-        get("/wallpaper", allWallpaper);
+        get("/LOLWiki/wallpaper", allWallpaper);
     }
 
     private Route allWallpaper = (request, response) -> {
