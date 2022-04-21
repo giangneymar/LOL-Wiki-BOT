@@ -5,6 +5,7 @@ import storage.models.database.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class AppSql {
     private Connection connection;
@@ -42,6 +43,6 @@ public class AppSql {
     }
 
     public interface Callback {
-        void execute(Connection connection);
+        void execute(Connection connection) throws SQLException;
     }
 }

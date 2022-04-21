@@ -1,9 +1,13 @@
 package bot;
 
 import org.jsoup.internal.StringUtil;
+import storage.models.Wallpaper;
 import utils.AppSql;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseBotDatabase {
@@ -36,6 +40,23 @@ public class BaseBotDatabase {
                 e.printStackTrace();
             }
         });
+    }
+
+    public ArrayList<Wallpaper> getAllWallpaper() {
+        ArrayList<Wallpaper> wallpapers = new ArrayList<>();
+        appSql.connect(connection -> {
+            String sql = "SELECT * FROM wallpaper";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Wallpaper wallpaper = new Wallpaper(
+                        rs.getInt(1),
+                        rs.getString(2)
+                );
+                wallpapers.add(wallpaper);
+            }
+        });
+        return wallpapers;
     }
 
     public void delete(String table) {
