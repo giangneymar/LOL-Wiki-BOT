@@ -1,0 +1,10 @@
+[ INFO] [2022-04-22 11:10:28] [Main$BotControl$1_run(73)] : schedule checking
+[ INFO] [2022-04-22 11:10:28] [bot.BaseBot_run(24)] : running
+[ INFO] [2022-04-22 11:10:28] [bot.WallpaperBot_run(29)] : prepare
+[ INFO] [2022-04-22 11:10:28] [bot.BaseBot_complete(29)] : complete
+[ INFO] [2022-04-22 11:10:28] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(17)] : start crawl
+[DEBUG] [2022-04-22 11:10:28] [bot.BaseBot_isNeedRun(36)] : isRunning[false] - last[1650600628882] - rest[900000] - now[1650600628879]
+[ INFO] [2022-04-22 11:10:28] [bot.WallpaperBot_lambda$getWallpaperFromWeb$0(18)] : crawl wallpaper
+[ INFO] [2022-04-22 11:10:29] [crawler.CrawlWallpaper_listWallpaperOnWeb(32)] : list wallpaper has 24 item
+[ INFO] [2022-04-22 11:10:29] [bot.BaseBotDatabase_delete(66)] : clear all data table[wallpaper]
+[ INFO] [2022-04-22 11:10:29] [bot.BaseBotDatabase_insert(26)] : insert data into table[wallpaper]
