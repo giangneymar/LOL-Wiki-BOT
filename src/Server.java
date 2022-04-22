@@ -21,6 +21,7 @@ public class Server {
         wallpapers = database.getAllWallpaper();
         String json = (new Gson()).toJson(wallpapers);
         System.out.println("aaaaa");
+        System.out.println("Giang fix bug 2");
         return json;
     };
 }
