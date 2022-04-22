@@ -1,6 +1,6 @@
-package crawler;
+package bot.lol.champion;
 
-import bot.mange.champion.ChampionBotDatabase;
+import bot.BaseBot;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,17 +14,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrawlChampion {
+public class ChampionDetailBot extends BaseBot {
     private AppLogger appLogger = AppLogger.getInstance();
     private AppStorage appStorage = AppStorage.getInstance();
-    public void crawlAllChampion(String link, String link1, String link2) throws IOException, SQLException {
+
+    public ChampionDetailBot(int maxThread, long restTime) {
+        super(maxThread, restTime);
+        toolkit.appLogger.info("create");
+    }
+
+    public void getAllChampion() {
+        executor.execute(() -> {
+            try {
+                toolkit.appLogger.info("start crawl");
+                toolkit.appLogger.info("crawl allChampion");
+                crawlChampionDetail("https://leagueoflegends.fandom.com/wiki/League_of_Legends_Wiki", "https://lol.garena.com/champions", "https://mobalytics.gg/blog/lol-tier-list-for-climbing-solo-queue/");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void crawlChampionDetail(String link, String link1, String link2) throws IOException, SQLException {
         ChampionBotDatabase championBotDatabase = new ChampionBotDatabase();
         Database database = appStorage.config.database;
         championBotDatabase.delete(database.table.champion);
-        String imageChamp, name, classes, resoure, blueEssence, riotPoints,
+        String  classes, resoure, blueEssence, riotPoints,
                 releaseDate, adaptiveType, health, healthRegen, armor, attackDamage,
                 magicResist, moveSpeed, attackRange, bonusAS, description;
-        int idChampion, idUpdateChamp;
+        int idChampionList, idUpdateChamp;
         List<String> legacyName;
         List<String> positionName;
 
@@ -32,9 +52,7 @@ public class CrawlChampion {
         Elements elementsListChampOfLink = document.select("ol.champion_roster li");
         int i = 0;
         for (Element elementsChampOfLink : elementsListChampOfLink) {
-            idChampion = i;
-            name = null;
-            imageChamp = null;
+            idChampionList = i;
             classes = null;
             blueEssence = null;
             resoure = null;
@@ -53,18 +71,7 @@ public class CrawlChampion {
             Elements elementsLinkChamp = elementsChampOfLink.getElementsByTag("a");
             String linkChamp = elementsLinkChamp.first().absUrl("href");
 
-            //get image on champ
-            Elements elementsImageChamp = elementsChampOfLink.getElementsByTag("img");
-            imageChamp = elementsImageChamp.first().absUrl("data-src");
-
             document = Jsoup.connect(linkChamp).get();
-            Elements elementsParser = document.select("div.mw-parser-output p b");
-            // get name champ
-            for (Element elementName : elementsParser) {
-                name = elementName.text();
-                break;
-            }
-
             Elements elementsDataValueRedirect = document.select("div.pi-data-value.pi-font a.mw-redirect");
             // get classes champ
             classes = elementsDataValueRedirect.first().text();
@@ -72,10 +79,7 @@ public class CrawlChampion {
             Elements elementsDataValuePiFont = document.select("div.pi-data-value.pi-font a");
             // get resource champ
             for (Element elementResource : elementsDataValuePiFont) {
-                if (elementResource.text().contains("Blood Well")
-                        || elementResource.text().contains("Mana")
-                        || elementResource.text().contains("Energy")
-                        || elementResource.text().contains("Manaless")) {
+                if (elementResource.text().contains("Blood Well") || elementResource.text().contains("Mana") || elementResource.text().contains("Energy") || elementResource.text().contains("Manaless")) {
                     resoure = elementResource.text();
                     break;
                 }
@@ -92,9 +96,7 @@ public class CrawlChampion {
             // get list positionName champ
             positionName = new ArrayList<>();
             for (Element elementPosition : elementsDataValuePiFont) {
-                if (elementPosition.absUrl("href").contains("champion")
-                        && !elementPosition.absUrl("href").contains("BE")
-                        && !elementPosition.absUrl("href").contains("RP")) {
+                if (elementPosition.absUrl("href").contains("champion") && !elementPosition.absUrl("href").contains("BE") && !elementPosition.absUrl("href").contains("RP")) {
                     if (elementPosition.text().length() != 0) {
                         positionName.add(elementPosition.text());
                     }
@@ -103,16 +105,14 @@ public class CrawlChampion {
 
             // get blueEssence champ
             for (Element elementBlueEssence : elementsDataValuePiFont) {
-                if (elementBlueEssence.absUrl("href").contains("BE")
-                        && elementBlueEssence.text().length() != 0) {
+                if (elementBlueEssence.absUrl("href").contains("BE") && elementBlueEssence.text().length() != 0) {
                     blueEssence = elementBlueEssence.text();
                 }
             }
 
             // get riotPoints champ
             for (Element elementRiotPoints : elementsDataValuePiFont) {
-                if (elementRiotPoints.absUrl("href").contains("RP")
-                        && elementRiotPoints.text().length() != 0) {
+                if (elementRiotPoints.absUrl("href").contains("RP") && elementRiotPoints.text().length() != 0) {
                     riotPoints = elementRiotPoints.text();
                 }
             }
@@ -122,14 +122,12 @@ public class CrawlChampion {
 
             // get adaptiveType champ
             for (Element elementAdaptiveType : elementsDataValuePiFont) {
-                if (elementAdaptiveType.absUrl("href").contains("force")
-                        && elementAdaptiveType.text().length() != 0) {
+                if (elementAdaptiveType.absUrl("href").contains("force") && elementAdaptiveType.text().length() != 0) {
                     adaptiveType = elementAdaptiveType.text();
                 }
             }
 
-            Elements elementsPiSmartDataValue = document
-                    .select("div.pi-smart-data-value.pi-data-value.pi-font.pi-item-spacing.pi-border-color span");
+            Elements elementsPiSmartDataValue = document.select("div.pi-smart-data-value.pi-data-value.pi-font.pi-item-spacing.pi-border-color span");
             // get health champ
             health = elementsPiSmartDataValue.first().text() + "(" + elementsPiSmartDataValue.get(1).text() + ")";
 
@@ -162,9 +160,7 @@ public class CrawlChampion {
                 }
             }
 
-            championBotDatabase.insertAllChampion(database.table.champion, idChampion, name, imageChamp, legacyName,
-                    positionName, blueEssence, riotPoints, releaseDate, classes, adaptiveType, resoure, health,
-                    healthRegen, armor, magicResist, moveSpeed, attackDamage, attackRange, bonusAS, "", "");
+            championBotDatabase.insertAllChampion(database.table.champion, idChampionList, legacyName, positionName, blueEssence, riotPoints, releaseDate, classes, adaptiveType, resoure, health, healthRegen, armor, magicResist, moveSpeed, attackDamage, attackRange, bonusAS, "", "");
 
             i++;
         }
@@ -179,7 +175,6 @@ public class CrawlChampion {
             // get description champ
             Elements elementsLore = document.select("div.lore p");
             description = elementsLore.text();
-            System.out.println("description " + description);
 
             // id Champion
             idUpdateChamp = m;
@@ -199,5 +194,13 @@ public class CrawlChampion {
         }
 
         appLogger.info(String.format("list champion has %s item", i));
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        toolkit.appLogger.info("prepare");
+        getAllChampion();
+        complete();
     }
 }

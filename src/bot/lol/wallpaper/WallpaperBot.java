@@ -1,6 +1,6 @@
-package crawler;
+package bot.lol.wallpaper;
 
-import bot.mange.wallpaper.WallpaperBotDatabase;
+import bot.BaseBot;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -12,9 +12,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrawlWallpaper {
+public class WallpaperBot extends BaseBot {
     private AppLogger appLogger = AppLogger.getInstance();
     private AppStorage appStorage = AppStorage.getInstance();
+
+    public WallpaperBot(int maxThread, long restTime) {
+        super(maxThread, restTime);
+        toolkit.appLogger.info("create");
+    }
+
+    public void getWallpaperFromWeb() {
+        executor.execute(() -> {
+            try {
+                toolkit.appLogger.info("start crawl");
+                toolkit.appLogger.info("crawl wallpaper");
+                listWallpaperOnWeb("https://recmiennam.com/hinh-nen-lien-minh-huyen-thoai-cho-dien-thoai.html");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
 
     public void listWallpaperOnWeb(String pageURL) throws IOException {
         WallpaperBotDatabase wallpaperBotDatabase = new WallpaperBotDatabase();
@@ -32,5 +50,13 @@ public class CrawlWallpaper {
         appLogger.info(String.format("list wallpaper has %s item", wallpapers.size()));
         wallpaperBotDatabase.delete(database.table.wallpaper);
         wallpaperBotDatabase.insertWallpaper(database.table.wallpaper, wallpapers);
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        toolkit.appLogger.info("prepare");
+        getWallpaperFromWeb();
+        complete();
     }
 }

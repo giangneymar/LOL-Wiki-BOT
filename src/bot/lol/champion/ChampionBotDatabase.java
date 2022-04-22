@@ -1,4 +1,4 @@
-package bot.mange.champion;
+package bot.lol.champion;
 
 import bot.BaseBotDatabase;
 import org.jsoup.internal.StringUtil;
@@ -12,9 +12,7 @@ public class ChampionBotDatabase extends BaseBotDatabase {
     }
     public void insertAllChampion(
             String table,
-            int id,
-            String name,
-            String image,
+            int idChampionList,
             List<String> legacyName,
             List<String> positionName,
             String blueEssence,
@@ -41,9 +39,7 @@ public class ChampionBotDatabase extends BaseBotDatabase {
         appSql.connect(connection -> {
             try {
                 String sql = String.format("INSERT INTO %s ("
-                                + "id,"
-                                + "name,"
-                                + "image,"
+                                + "championListId,"
                                 + "legacyName,"
                                 + "positionName,"
                                 + "blueEssence,"
@@ -61,8 +57,8 @@ public class ChampionBotDatabase extends BaseBotDatabase {
                                 + "attackRange,"
                                 + "bonusAS,"
                                 + "description,"
-                                + "tier) "
-                                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                                + "tier)"
+                                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                         table);
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 StringBuilder stringBuilder1 = new StringBuilder();
@@ -77,28 +73,59 @@ public class ChampionBotDatabase extends BaseBotDatabase {
                     stringBuilder2.append(" ");
                 }
                 String position = stringBuilder2.toString().trim();
+                pstmt.setInt(1, idChampionList);
+                pstmt.setString(2, legacy);
+                pstmt.setString(3, position);
+                pstmt.setString(4, blueEssence);
+                pstmt.setString(5, riotPoints);
+                pstmt.setString(6, releaseDate);
+                pstmt.setString(7, classes);
+                pstmt.setString(8, adaptiveType);
+                pstmt.setString(9, resource);
+                pstmt.setString(10, health);
+                pstmt.setString(11, healthRegen);
+                pstmt.setString(12, armor);
+                pstmt.setString(13, magicResist);
+                pstmt.setString(14, moveSpeed);
+                pstmt.setString(15, attackDamage);
+                pstmt.setString(16, attackRange);
+                pstmt.setString(17, bonusAS);
+                pstmt.setString(18, description);
+                pstmt.setString(19, tier);
+                pstmt.executeUpdate();
+                toolkit.appLogger.info(String.format("insert success", table));
+                pstmt.close();
+                connection.close();
+            } catch (Exception e) {
+                toolkit.appLogger.warning(String.format("insert all data table[%s] has error[%s]", table, e.getMessage()));
+            }
+        });
+    }
+
+    public void insertListChampion(
+            String table,
+            int id,
+            String name,
+            String image
+    ) {
+        if (StringUtil.isBlank(table)) {
+            toolkit.appLogger.info("null table name");
+        }
+        toolkit.appLogger.info(String.format("insert data table[%s]", table));
+        appSql.connect(connection -> {
+            try {
+                String sql = String.format("INSERT INTO %s ("
+                                + "id,"
+                                + "name,"
+                                + "image)"
+                                + "VALUES(?,?,?)",
+                        table);
+                PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setInt(1, id);
                 pstmt.setString(2, name);
                 pstmt.setString(3, image);
-                pstmt.setString(4, legacy);
-                pstmt.setString(5, position);
-                pstmt.setString(6, blueEssence);
-                pstmt.setString(7, riotPoints);
-                pstmt.setString(8, releaseDate);
-                pstmt.setString(9, classes);
-                pstmt.setString(10, adaptiveType);
-                pstmt.setString(11, resource);
-                pstmt.setString(12, health);
-                pstmt.setString(13, healthRegen);
-                pstmt.setString(14, armor);
-                pstmt.setString(15, magicResist);
-                pstmt.setString(16, moveSpeed);
-                pstmt.setString(17, attackDamage);
-                pstmt.setString(18, attackRange);
-                pstmt.setString(19, bonusAS);
-                pstmt.setString(20, description);
-                pstmt.setString(21, tier);
                 pstmt.executeUpdate();
+                toolkit.appLogger.info(String.format("insert success", table));
                 pstmt.close();
                 connection.close();
             } catch (Exception e) {
@@ -116,7 +143,7 @@ public class ChampionBotDatabase extends BaseBotDatabase {
             try {
                 String sql = "UPDATE champion "
                         + "SET description = ? "
-                        + "WHERE id = ?";
+                        + "WHERE championListId = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, des);
                 pstmt.setInt(2, id);
