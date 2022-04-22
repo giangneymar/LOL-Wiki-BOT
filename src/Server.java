@@ -1,4 +1,4 @@
-import bot.WallpaperDatabase;
+import bot.mange.wallpaper.WallpaperBotDatabase;
 import com.google.gson.Gson;
 import spark.Route;
 import spark.Spark;
@@ -16,7 +16,7 @@ public class Server {
     }
 
     private Route allWallpaper = (request, response) -> {
-        WallpaperDatabase database = new WallpaperDatabase();
+        WallpaperBotDatabase database = new WallpaperBotDatabase();
         ArrayList<Wallpaper> wallpapers;
         wallpapers = database.getAllWallpaper();
         String json = (new Gson()).toJson(wallpapers);
