@@ -1,3 +1,5 @@
 .idea
 out
 asset/out
+.gradle
+build
