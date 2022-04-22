@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="reflections-0.10.2">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/reflections-0.10.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LibraryBOT/reflections-0.10.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

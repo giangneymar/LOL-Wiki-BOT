@@ -1,5 +1,6 @@
-package bot;
+package bot.mange.wallpaper;
 
+import bot.BaseBot;
 import crawler.CrawlWallpaper;
 
 import java.io.IOException;

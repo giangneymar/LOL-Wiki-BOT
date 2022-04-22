@@ -7,4 +7,8 @@ public class DatabaseTable {
     @SerializedName("wallpaper")
     @Expose
     public String wallpaper;
+
+    @SerializedName("champion")
+    @Expose
+    public String champion;
 }

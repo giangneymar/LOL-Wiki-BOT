@@ -6,7 +6,8 @@
     "user": "root",
     "pass": "",
     "table": {
-      "wallpaper": "wallpaper"
+      "wallpaper": "wallpaper",
+      "champion": "champion"
     }
   },
   "setting": {

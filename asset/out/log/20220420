@@ -4,7 +4,7 @@
 [DEBUG] [2022-04-20 17:00:18] [Main$BotControl_<init>(49)] : delay[ 0 ] - period[ 60000 ]
 [ INFO] [2022-04-20 17:00:18] [Main$BotControl_<init>(51)] : creating bots
 [ INFO] [2022-04-20 17:00:18] [bot.WallpaperBot_<init>(10)] : create
-[ INFO] [2022-04-20 17:00:18] [Main$BotControl_<init>(60)] : create bot[ bot.WallpaperBot ] success
+[ INFO] [2022-04-20 17:00:18] [Main$BotControl_<init>(60)] : create bot[ bot.mange.wallpaper.WallpaperBot ] success
 [ INFO] [2022-04-20 17:00:18] [Main$BotControl$1_run(71)] : schedule checking
 [DEBUG] [2022-04-20 17:00:18] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[0] - rest[900000] - now[1650448818520]
 [ INFO] [2022-04-20 17:00:18] [bot.BaseBot_run(24)] : running

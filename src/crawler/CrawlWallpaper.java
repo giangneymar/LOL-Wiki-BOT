@@ -1,6 +1,6 @@
 package crawler;
 
-import bot.WallpaperDatabase;
+import bot.mange.wallpaper.WallpaperBotDatabase;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -17,7 +17,7 @@ public class CrawlWallpaper {
     private AppStorage appStorage = AppStorage.getInstance();
 
     public void listWallpaperOnWeb(String pageURL) throws IOException {
-        WallpaperDatabase wallpaperDatabase = new WallpaperDatabase();
+        WallpaperBotDatabase wallpaperBotDatabase = new WallpaperBotDatabase();
         Database database = appStorage.config.database;
         Document document = Jsoup.connect(pageURL).get();
         List<String> wallpapers = new ArrayList<>();
@@ -30,7 +30,7 @@ public class CrawlWallpaper {
             wallpapers.add(url);
         }
         appLogger.info(String.format("list wallpaper has %s item", wallpapers.size()));
-        wallpaperDatabase.delete(database.table.wallpaper);
-        wallpaperDatabase.insert(database.table.wallpaper, wallpapers);
+        wallpaperBotDatabase.delete(database.table.wallpaper);
+        wallpaperBotDatabase.insertWallpaper(database.table.wallpaper, wallpapers);
     }
 }
