@@ -1741,3 +1741,9 @@
 [ INFO] [2022-04-22 09:38:37] [Main$BotControl$1_run(71)] : schedule checking
 [DEBUG] [2022-04-22 09:38:37] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650594997803] - rest[900000] - now[1650595117808]
 [DEBUG] [2022-04-22 09:38:37] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650594997805] - rest[900000] - now[1650595117808]
+[ INFO] [2022-04-22 09:39:37] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-22 09:39:37] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650594997803] - rest[900000] - now[1650595177811]
+[DEBUG] [2022-04-22 09:39:37] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650594997805] - rest[900000] - now[1650595177811]
+[ INFO] [2022-04-22 09:40:37] [Main$BotControl$1_run(71)] : schedule checking
+[DEBUG] [2022-04-22 09:40:37] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650594997803] - rest[900000] - now[1650595237815]
+[DEBUG] [2022-04-22 09:40:37] [bot.BaseBot_isNeedRun(35)] : isRunning[false] - last[1650594997805] - rest[900000] - now[1650595237815]
