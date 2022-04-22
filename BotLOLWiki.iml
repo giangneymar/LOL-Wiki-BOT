@@ -7,14 +7,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="gson-2.3.1" level="project" />
-    <orderEntry type="library" name="javassist-3.28.0-GA" level="project" />
-    <orderEntry type="library" name="jsoup-1.14.3" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-8.0.27" level="project" />
-    <orderEntry type="library" name="slf4j-api-1.7.36" level="project" />
-    <orderEntry type="library" name="slf4j-simple-1.7.36" level="project" />
-    <orderEntry type="library" name="commons-io-2.8.0" level="project" />
-    <orderEntry type="library" name="reflections-0.10.2" level="project" />
     <orderEntry type="library" name="spark-core-2.7.2" level="project" />
+    <orderEntry type="library" name="commons-io-2.8.0" level="project" />
+    <orderEntry type="library" name="gson-2.3.1" level="project" />
+    <orderEntry type="library" name="jsoup-1.14.3" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.28" level="project" />
+    <orderEntry type="library" name="reflections-0.10.2" level="project" />
   </component>
 </module>
