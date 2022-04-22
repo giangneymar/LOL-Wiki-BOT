@@ -20,7 +20,7 @@ public class Server {
         ArrayList<Wallpaper> wallpapers;
         wallpapers = database.getAllWallpaper();
         String json = (new Gson()).toJson(wallpapers);
-        System.out.println("Giang nghich o day");
+        System.out.println("aaaaa");
         return json;
     };
 }
