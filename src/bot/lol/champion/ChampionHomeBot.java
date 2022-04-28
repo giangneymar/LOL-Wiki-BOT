@@ -26,7 +26,7 @@ public class ChampionHomeBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-//         getListChampion();
+        getListChampion();
         complete();
     }
 

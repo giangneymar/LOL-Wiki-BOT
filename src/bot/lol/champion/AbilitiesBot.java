@@ -27,7 +27,7 @@ public class AbilitiesBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-        // getAllAbilities();
+        getAllAbilities();
         complete();
     }
 
@@ -58,7 +58,7 @@ public class AbilitiesBot extends BaseBot {
             String linkChamp = elementsListChamp.get(i).absUrl("href");
             listLinkChamp.add(linkChamp);
         }
-        Collections.sort(listLinkChamp, (o1, o2) -> o1.compareTo(o2));
+        Collections.sort(listLinkChamp, String::compareTo);
         for (int i = 0; i < listLinkChamp.size(); i++) {
             index++;
             document = Jsoup.connect(listLinkChamp.get(i)).get();

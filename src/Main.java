@@ -69,8 +69,9 @@ public class Main {
                 @Override
                 public void run() {
                     appLogger.info("schedule checking");
+                    long now = System.currentTimeMillis();
                     for (BaseBot bot : bots) {
-                        bot.run();
+                        if (bot.isNeedRun(now)) bot.run();
                     }
                 }
             }, delay, period);

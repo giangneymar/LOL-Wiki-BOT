@@ -11,97 +11,6 @@ public class ChampionBotDatabase extends BaseBotDatabase {
         super();
     }
 
-    public void insertAllChampion(
-            String table,
-            int idChampionList,
-            List<String> legacyName,
-            List<String> positionName,
-            String blueEssence,
-            String riotPoints,
-            String releaseDate,
-            String classes,
-            String adaptiveType,
-            String resource,
-            String health,
-            String healthRegen,
-            String armor,
-            String magicResist,
-            String moveSpeed,
-            String attackDamage,
-            String attackRange,
-            String bonusAS,
-            String description,
-            String tier
-    ) {
-        if (StringUtil.isBlank(table)) {
-            toolkit.appLogger.info("null table name");
-        }
-        toolkit.appLogger.info(String.format("insert data table[%s]", table));
-        appSql.connect(connection -> {
-            try {
-                String sql = String.format("INSERT INTO %s ("
-                                + "championListId,"
-                                + "legacyName,"
-                                + "positionName,"
-                                + "blueEssence,"
-                                + "riotPoints,"
-                                + "releaseDate,"
-                                + "classes,"
-                                + "adaptiveType,"
-                                + "resource,"
-                                + "health,"
-                                + "healthRegen,"
-                                + "armor,"
-                                + "magicResist,"
-                                + "moveSpeed,"
-                                + "attackDamage,"
-                                + "attackRange,"
-                                + "bonusAS,"
-                                + "description,"
-                                + "tier)"
-                                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        table);
-                PreparedStatement ps = connection.prepareStatement(sql);
-                StringBuilder stringBuilder1 = new StringBuilder();
-                StringBuilder stringBuilder2 = new StringBuilder();
-                for (String le : legacyName) {
-                    stringBuilder1.append(le);
-                    stringBuilder1.append(" ");
-                }
-                String legacy = stringBuilder1.toString().trim();
-                for (String po : positionName) {
-                    stringBuilder2.append(po);
-                    stringBuilder2.append(" ");
-                }
-                String position = stringBuilder2.toString().trim();
-                ps.setInt(1, idChampionList);
-                ps.setString(2, legacy);
-                ps.setString(3, position);
-                ps.setString(4, blueEssence);
-                ps.setString(5, riotPoints);
-                ps.setString(6, releaseDate);
-                ps.setString(7, classes);
-                ps.setString(8, adaptiveType);
-                ps.setString(9, resource);
-                ps.setString(10, health);
-                ps.setString(11, healthRegen);
-                ps.setString(12, armor);
-                ps.setString(13, magicResist);
-                ps.setString(14, moveSpeed);
-                ps.setString(15, attackDamage);
-                ps.setString(16, attackRange);
-                ps.setString(17, bonusAS);
-                ps.setString(18, description);
-                ps.setString(19, tier);
-                ps.executeUpdate();
-                ps.close();
-                connection.close();
-            } catch (Exception e) {
-                toolkit.appLogger.warning(String.format("insert all data table[%s] has error[%s]", table, e.getMessage()));
-            }
-        });
-    }
-
     public void insertListChampion(
             String table,
             int id,
@@ -213,7 +122,7 @@ public class ChampionBotDatabase extends BaseBotDatabase {
             try {
                 String sql = "UPDATE champion "
                         + "SET description = ? "
-                        + "WHERE championListId = ?";
+                        + "WHERE id = ?";
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setString(1, des);
                 ps.setInt(2, id);

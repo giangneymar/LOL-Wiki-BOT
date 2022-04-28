@@ -17,6 +17,14 @@ public class ItemBot extends BaseBot {
         toolkit.appLogger.info("create");
     }
 
+    @Override
+    public void run() {
+        super.run();
+        toolkit.appLogger.info("prepare");
+        getAllItemForChampion();
+        complete();
+    }
+
     public void getAllItemForChampion() {
         executor.execute(() -> {
             toolkit.appLogger.info("start crawl");
@@ -136,13 +144,5 @@ public class ItemBot extends BaseBot {
             }
         }
         return kq.toString().trim();
-    }
-
-    @Override
-    public void run() {
-        super.run();
-        toolkit.appLogger.info("prepare");
-        getAllItemForChampion();
-        complete();
     }
 }

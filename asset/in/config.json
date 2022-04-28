@@ -15,15 +15,14 @@
   },
   "time": {
     "maxThread": 5,
-    "restTime": 15
+    "restTime": 1
   },
   "setting": {
-    "timeCheck": 60
+    "timeCheck": 1
   },
   "logger": {
     "isLog": true,
     "isFile": true,
-    "level": "debug",
-    "directory": "/asset/out/log"
+    "level": "debug"
   }
 }

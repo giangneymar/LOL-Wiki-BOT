@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
 
 public class ChampionDetailBot extends BaseBot {
     private AppLogger appLogger = AppLogger.getInstance();
@@ -27,30 +28,35 @@ public class ChampionDetailBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-         updateDetailChampion();
+        updateDetailChampion();
         complete();
     }
 
     public void updateDetailChampion() {
         executor.execute(() -> {
-            try {
-                toolkit.appLogger.info("start crawl");
-                toolkit.appLogger.info("crawl allChampion");
-                crawlChampionDetail("https://leagueoflegends.fandom.com/wiki/League_of_Legends_Wiki",
-                        "https://lol.garena.com/champions",
-                        "https://mobalytics.gg/blog/lol-tier-list-for-climbing-solo-queue/");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            toolkit.appLogger.info("start crawl");
+            toolkit.appLogger.info("crawl allChampion");
+            new java.util.Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        crawlChampionDetail("https://leagueoflegends.fandom.com/wiki/League_of_Legends_Wiki",
+                                "https://lol.garena.com/champions",
+                                "https://mobalytics.gg/blog/lol-tier-list-for-climbing-solo-queue/");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 10000, 0);
         });
     }
 
     public void crawlChampionDetail(String link, String link1, String link2) throws IOException, SQLException {
         ChampionBotDatabase championBotDatabase = new ChampionBotDatabase();
         Database database = appStorage.config.database;
-      //  championBotDatabase.delete(database.table.champion);
+
         String classes, resource, blueEssence, riotPoints,
                 releaseDate, adaptiveType, health, healthRegen, armor, attackDamage,
                 magicResist, moveSpeed, attackRange, bonusAS, description;
