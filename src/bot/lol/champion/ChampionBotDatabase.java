@@ -10,6 +10,7 @@ public class ChampionBotDatabase extends BaseBotDatabase {
     public ChampionBotDatabase() {
         super();
     }
+
     public void insertAllChampion(
             String table,
             int idChampionList,
@@ -60,7 +61,7 @@ public class ChampionBotDatabase extends BaseBotDatabase {
                                 + "tier)"
                                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                         table);
-                PreparedStatement pstmt = connection.prepareStatement(sql);
+                PreparedStatement ps = connection.prepareStatement(sql);
                 StringBuilder stringBuilder1 = new StringBuilder();
                 StringBuilder stringBuilder2 = new StringBuilder();
                 for (String le : legacyName) {
@@ -73,28 +74,27 @@ public class ChampionBotDatabase extends BaseBotDatabase {
                     stringBuilder2.append(" ");
                 }
                 String position = stringBuilder2.toString().trim();
-                pstmt.setInt(1, idChampionList);
-                pstmt.setString(2, legacy);
-                pstmt.setString(3, position);
-                pstmt.setString(4, blueEssence);
-                pstmt.setString(5, riotPoints);
-                pstmt.setString(6, releaseDate);
-                pstmt.setString(7, classes);
-                pstmt.setString(8, adaptiveType);
-                pstmt.setString(9, resource);
-                pstmt.setString(10, health);
-                pstmt.setString(11, healthRegen);
-                pstmt.setString(12, armor);
-                pstmt.setString(13, magicResist);
-                pstmt.setString(14, moveSpeed);
-                pstmt.setString(15, attackDamage);
-                pstmt.setString(16, attackRange);
-                pstmt.setString(17, bonusAS);
-                pstmt.setString(18, description);
-                pstmt.setString(19, tier);
-                pstmt.executeUpdate();
-                toolkit.appLogger.info(String.format("insert success", table));
-                pstmt.close();
+                ps.setInt(1, idChampionList);
+                ps.setString(2, legacy);
+                ps.setString(3, position);
+                ps.setString(4, blueEssence);
+                ps.setString(5, riotPoints);
+                ps.setString(6, releaseDate);
+                ps.setString(7, classes);
+                ps.setString(8, adaptiveType);
+                ps.setString(9, resource);
+                ps.setString(10, health);
+                ps.setString(11, healthRegen);
+                ps.setString(12, armor);
+                ps.setString(13, magicResist);
+                ps.setString(14, moveSpeed);
+                ps.setString(15, attackDamage);
+                ps.setString(16, attackRange);
+                ps.setString(17, bonusAS);
+                ps.setString(18, description);
+                ps.setString(19, tier);
+                ps.executeUpdate();
+                ps.close();
                 connection.close();
             } catch (Exception e) {
                 toolkit.appLogger.warning(String.format("insert all data table[%s] has error[%s]", table, e.getMessage()));
@@ -120,13 +120,12 @@ public class ChampionBotDatabase extends BaseBotDatabase {
                                 + "image)"
                                 + "VALUES(?,?,?)",
                         table);
-                PreparedStatement pstmt = connection.prepareStatement(sql);
-                pstmt.setInt(1, id);
-                pstmt.setString(2, name);
-                pstmt.setString(3, image);
-                pstmt.executeUpdate();
-                toolkit.appLogger.info(String.format("insert success", table));
-                pstmt.close();
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, id);
+                ps.setString(2, name);
+                ps.setString(3, image);
+                ps.executeUpdate();
+                ps.close();
                 connection.close();
             } catch (Exception e) {
                 toolkit.appLogger.warning(String.format("insert all data table[%s] has error[%s]", table, e.getMessage()));
@@ -134,7 +133,78 @@ public class ChampionBotDatabase extends BaseBotDatabase {
         });
     }
 
-    public void updateDesChampion(int id, String des, String table) {
+    public void updateChampionById(
+            int id, String table, List<String> legacyName,
+            List<String> positionName, String blueEssence, String riotPoints,
+            String releaseDate, String classes, String adaptiveType, String resource,
+            String health, String healthRegen, String armor, String magicResist,
+            String moveSpeed, String attackDamage, String attackRange, String bonusAS
+    ) {
+        if (StringUtil.isBlank(table)) {
+            toolkit.appLogger.info("null table name");
+        }
+        toolkit.appLogger.info(String.format("update data into table[%s]", table));
+        appSql.connect(connection -> {
+            try {
+                String sql = String.format("UPDATE %s "
+                                + "SET legacyName = ?, "
+                                + "positionName = ?, "
+                                + "blueEssence = ?, "
+                                + "riotPoints = ?, "
+                                + "releaseDate = ?, "
+                                + "classes = ?, "
+                                + "adaptiveType = ?, "
+                                + "resource = ?, "
+                                + "health = ?, "
+                                + "healthRegen = ?, "
+                                + "armor = ?, "
+                                + "magicResist = ?, "
+                                + "moveSpeed = ?, "
+                                + "attackDamage = ?, "
+                                + "attackRange = ?, "
+                                + "bonusAS = ? "
+                                + "WHERE id = ?",
+                        table);
+                PreparedStatement ps = connection.prepareStatement(sql);
+                StringBuilder stringBuilder1 = new StringBuilder();
+                StringBuilder stringBuilder2 = new StringBuilder();
+                for (String le : legacyName) {
+                    stringBuilder1.append(le);
+                    stringBuilder1.append(" ");
+                }
+                String legacy = stringBuilder1.toString().trim();
+                for (String po : positionName) {
+                    stringBuilder2.append(po);
+                    stringBuilder2.append(" ");
+                }
+                String position = stringBuilder2.toString().trim();
+                ps.setString(1, legacy);
+                ps.setString(2, position);
+                ps.setString(3, blueEssence);
+                ps.setString(4, riotPoints);
+                ps.setString(5, releaseDate);
+                ps.setString(6, classes);
+                ps.setString(7, adaptiveType);
+                ps.setString(8, resource);
+                ps.setString(9, health);
+                ps.setString(10, healthRegen);
+                ps.setString(11, armor);
+                ps.setString(12, magicResist);
+                ps.setString(13, moveSpeed);
+                ps.setString(14, attackDamage);
+                ps.setString(15, attackRange);
+                ps.setString(16, bonusAS);
+                ps.setInt(17, id);
+                ps.executeUpdate();
+                ps.close();
+                connection.close();
+            } catch (Exception e) {
+                toolkit.appLogger.warning(String.format("update all data table[%s] has error[%s]", table, e.getMessage()));
+            }
+        });
+    }
+
+    public void updateDesChampionById(int id, String des, String table) {
         if (StringUtil.isBlank(table)) {
             toolkit.appLogger.info("null table name");
         }
@@ -144,11 +214,11 @@ public class ChampionBotDatabase extends BaseBotDatabase {
                 String sql = "UPDATE champion "
                         + "SET description = ? "
                         + "WHERE championListId = ?";
-                PreparedStatement pstmt = connection.prepareStatement(sql);
-                pstmt.setString(1, des);
-                pstmt.setInt(2, id);
-                pstmt.executeUpdate();
-                pstmt.close();
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1, des);
+                ps.setInt(2, id);
+                ps.executeUpdate();
+                ps.close();
                 connection.close();
             } catch (Exception e) {
                 toolkit.appLogger.warning(String.format("update all data table[%s] has error[%s]", table, e.getMessage()));
@@ -156,7 +226,7 @@ public class ChampionBotDatabase extends BaseBotDatabase {
         });
     }
 
-    public void updateTierChampion(String name, String table) {
+    public void updateTierChampionByName(String name, String table) {
         if (StringUtil.isBlank(table)) {
             toolkit.appLogger.info("null table name");
         }
@@ -166,13 +236,59 @@ public class ChampionBotDatabase extends BaseBotDatabase {
                 String sql = "UPDATE champion "
                         + "SET tier = 's' "
                         + "WHERE name = ?";
-                PreparedStatement pstmt = connection.prepareStatement(sql);
-                pstmt.setString(1, name);
-                pstmt.executeUpdate();
-                pstmt.close();
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1, name);
+                ps.executeUpdate();
+                ps.close();
                 connection.close();
             } catch (Exception e) {
                 toolkit.appLogger.warning(String.format("update all data table[%s] has error[%s]", table, e.getMessage()));
+            }
+        });
+    }
+
+    public void insertAllAbilities(
+            String table,
+            int championId,
+            String name,
+            String range,
+            String cost,
+            String coolDown,
+            String image,
+            String description,
+            String key
+    ) {
+        if (StringUtil.isBlank(table)) {
+            toolkit.appLogger.info("null table name");
+        }
+        toolkit.appLogger.info(String.format("insert data table[%s]", table));
+        appSql.connect(connection -> {
+            try {
+                String sql = String.format("INSERT INTO %s ("
+                                + "championId,"
+                                + "name,"
+                                + "rangeAbilities,"
+                                + "cost,"
+                                + "coolDown,"
+                                + "image,"
+                                + "description,"
+                                + "keyAbilities)"
+                                + "VALUES(?,?,?,?,?,?,?,?)",
+                        table);
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, championId);
+                ps.setString(2, name);
+                ps.setString(3, range);
+                ps.setString(4, cost);
+                ps.setString(5, coolDown);
+                ps.setString(6, image);
+                ps.setString(7, description);
+                ps.setString(8, key);
+                ps.executeUpdate();
+                ps.close();
+                connection.close();
+            } catch (Exception e) {
+                toolkit.appLogger.warning(String.format("insert all data table[%s] has error[%s]", table, e.getMessage()));
             }
         });
     }

@@ -12,9 +12,9 @@ public class DatabaseTable {
     @Expose
     public String champion;
 
-    @SerializedName("champion_list")
+    @SerializedName("abilities")
     @Expose
-    public String champion_list;
+    public String abilities;
 
     @SerializedName("item")
     @Expose

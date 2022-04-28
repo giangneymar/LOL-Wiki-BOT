@@ -23,12 +23,22 @@ public class ChampionDetailBot extends BaseBot {
         toolkit.appLogger.info("create");
     }
 
-    public void getAllChampion() {
+    @Override
+    public void run() {
+        super.run();
+        toolkit.appLogger.info("prepare");
+         updateDetailChampion();
+        complete();
+    }
+
+    public void updateDetailChampion() {
         executor.execute(() -> {
             try {
                 toolkit.appLogger.info("start crawl");
                 toolkit.appLogger.info("crawl allChampion");
-                crawlChampionDetail("https://leagueoflegends.fandom.com/wiki/League_of_Legends_Wiki", "https://lol.garena.com/champions", "https://mobalytics.gg/blog/lol-tier-list-for-climbing-solo-queue/");
+                crawlChampionDetail("https://leagueoflegends.fandom.com/wiki/League_of_Legends_Wiki",
+                        "https://lol.garena.com/champions",
+                        "https://mobalytics.gg/blog/lol-tier-list-for-climbing-solo-queue/");
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -40,11 +50,11 @@ public class ChampionDetailBot extends BaseBot {
     public void crawlChampionDetail(String link, String link1, String link2) throws IOException, SQLException {
         ChampionBotDatabase championBotDatabase = new ChampionBotDatabase();
         Database database = appStorage.config.database;
-        championBotDatabase.delete(database.table.champion);
-        String  classes, resoure, blueEssence, riotPoints,
+      //  championBotDatabase.delete(database.table.champion);
+        String classes, resource, blueEssence, riotPoints,
                 releaseDate, adaptiveType, health, healthRegen, armor, attackDamage,
                 magicResist, moveSpeed, attackRange, bonusAS, description;
-        int idChampionList, idUpdateChamp;
+        int idChampion, idUpdateChamp;
         List<String> legacyName;
         List<String> positionName;
 
@@ -52,40 +62,33 @@ public class ChampionDetailBot extends BaseBot {
         Elements elementsListChampOfLink = document.select("ol.champion_roster li");
         int i = 0;
         for (Element elementsChampOfLink : elementsListChampOfLink) {
-            idChampionList = i;
-            classes = null;
+            idChampion = i;
             blueEssence = null;
-            resoure = null;
+            resource = null;
             riotPoints = null;
-            releaseDate = null;
             adaptiveType = null;
-            health = null;
-            healthRegen = null;
-            armor = null;
-            attackDamage = null;
             attackRange = null;
-            magicResist = null;
-            moveSpeed = null;
             bonusAS = null;
-            //get link one champ of LINK
+
+            appLogger.info("get link one champ");
             Elements elementsLinkChamp = elementsChampOfLink.getElementsByTag("a");
             String linkChamp = elementsLinkChamp.first().absUrl("href");
-
             document = Jsoup.connect(linkChamp).get();
             Elements elementsDataValueRedirect = document.select("div.pi-data-value.pi-font a.mw-redirect");
-            // get classes champ
-            classes = elementsDataValueRedirect.first().text();
 
+            appLogger.info("get classes champ");
+            classes = elementsDataValueRedirect.first().text();
             Elements elementsDataValuePiFont = document.select("div.pi-data-value.pi-font a");
-            // get resource champ
+
+            appLogger.info("get resource champ");
             for (Element elementResource : elementsDataValuePiFont) {
                 if (elementResource.text().contains("Blood Well") || elementResource.text().contains("Mana") || elementResource.text().contains("Energy") || elementResource.text().contains("Manaless")) {
-                    resoure = elementResource.text();
+                    resource = elementResource.text();
                     break;
                 }
             }
 
-            // get list legacyName champ
+            appLogger.info("get list legacyName champ");
             legacyName = new ArrayList<>();
             for (Element elementLegacy : elementsDataValuePiFont) {
                 if (elementLegacy.absUrl("href").contains("Legacy") && elementLegacy.text().length() != 0) {
@@ -93,7 +96,7 @@ public class ChampionDetailBot extends BaseBot {
                 }
             }
 
-            // get list positionName champ
+            appLogger.info("get list positionName champ");
             positionName = new ArrayList<>();
             for (Element elementPosition : elementsDataValuePiFont) {
                 if (elementPosition.absUrl("href").contains("champion") && !elementPosition.absUrl("href").contains("BE") && !elementPosition.absUrl("href").contains("RP")) {
@@ -103,86 +106,87 @@ public class ChampionDetailBot extends BaseBot {
                 }
             }
 
-            // get blueEssence champ
+            appLogger.info("get blueEssence champ");
             for (Element elementBlueEssence : elementsDataValuePiFont) {
                 if (elementBlueEssence.absUrl("href").contains("BE") && elementBlueEssence.text().length() != 0) {
                     blueEssence = elementBlueEssence.text();
                 }
             }
 
-            // get riotPoints champ
+            appLogger.info("get riotPoints champ");
             for (Element elementRiotPoints : elementsDataValuePiFont) {
                 if (elementRiotPoints.absUrl("href").contains("RP") && elementRiotPoints.text().length() != 0) {
                     riotPoints = elementRiotPoints.text();
                 }
             }
 
-            // get releaseDate champ
+            appLogger.info("get releaseDate champ");
             releaseDate = elementsDataValuePiFont.first().text();
 
-            // get adaptiveType champ
+            appLogger.info("get adaptiveType champ");
             for (Element elementAdaptiveType : elementsDataValuePiFont) {
                 if (elementAdaptiveType.absUrl("href").contains("force") && elementAdaptiveType.text().length() != 0) {
                     adaptiveType = elementAdaptiveType.text();
                 }
             }
-
             Elements elementsPiSmartDataValue = document.select("div.pi-smart-data-value.pi-data-value.pi-font.pi-item-spacing.pi-border-color span");
-            // get health champ
+
+            appLogger.info("get health champ");
             health = elementsPiSmartDataValue.first().text() + "(" + elementsPiSmartDataValue.get(1).text() + ")";
 
-            // get healthRegen champ
+            appLogger.info("get healthRegen champ");
             healthRegen = elementsPiSmartDataValue.get(2).text() + "(" + elementsPiSmartDataValue.get(3).text() + ")";
 
-            // get armor champ
+            appLogger.info("get armor champ");
             armor = elementsPiSmartDataValue.get(4).text() + "(" + elementsPiSmartDataValue.get(5).text() + ")";
 
-            // get attackDamage champ
+            appLogger.info("get attackDamage champ");
             attackDamage = elementsPiSmartDataValue.get(6).text() + "(" + elementsPiSmartDataValue.get(7).text() + ")";
 
-            // get magicResist champ
+            appLogger.info("get magicResist champ");
             magicResist = elementsPiSmartDataValue.get(8).text() + "(" + elementsPiSmartDataValue.get(9).text() + ")";
 
-            // get moveSpeed champ
+            appLogger.info("get moveSpeed champ");
             moveSpeed = elementsPiSmartDataValue.get(10).text();
 
-            // get attackRange champ
+            appLogger.info("get attackRange champ");
             for (Element elementAttackRange : elementsPiSmartDataValue) {
                 if (elementAttackRange.absUrl("id").contains("AttackRange")) {
                     attackRange = elementAttackRange.text();
                 }
             }
 
-            // get bonusAS champ
+            appLogger.info("get bonusAS champ");
             for (Element elementBonusAS : elementsPiSmartDataValue) {
                 if (elementBonusAS.absUrl("id").contains("AttackSpeedBonus")) {
                     bonusAS = "0" + elementBonusAS.text() + "%";
                 }
             }
 
-            championBotDatabase.insertAllChampion(database.table.champion, idChampionList, legacyName, positionName, blueEssence, riotPoints, releaseDate, classes, adaptiveType, resoure, health, healthRegen, armor, magicResist, moveSpeed, attackDamage, attackRange, bonusAS, "", "");
-
+            appLogger.info(String.format("update champion where id = %d", idChampion));
+            championBotDatabase.updateChampionById(idChampion, database.table.champion, legacyName, positionName,
+                    blueEssence, riotPoints, releaseDate, classes, adaptiveType, resource, health, healthRegen, armor, magicResist
+                    , moveSpeed, attackDamage, attackRange, bonusAS);
             i++;
         }
-        ////////////////////////////////////////// des
 
+        appLogger.info("update description champ");
         document = Jsoup.connect(link1).get();
         Elements elementsListChamp = document.select("div.boxs a");
         for (int m = 0; m < elementsListChamp.size(); m++) {
             String linkChamp = elementsListChamp.get(m).absUrl("href");
             document = Jsoup.connect(linkChamp).get();
 
-            // get description champ
+            appLogger.info("get description champ");
             Elements elementsLore = document.select("div.lore p");
             description = elementsLore.text();
 
-            // id Champion
+            appLogger.info("get id Champion");
             idUpdateChamp = m;
-            championBotDatabase.updateDesChampion(idUpdateChamp, description, database.table.champion);
+            championBotDatabase.updateDesChampionById(idUpdateChamp, description, database.table.champion);
         }
 
-        //////////////////////////////////////// tier
-
+        appLogger.info("update tier champ");
         document = Jsoup.connect(link2).get();
         List<String> listNameChamp = new ArrayList<>();
         Elements elementsListName = document.select("div.section a");
@@ -190,17 +194,10 @@ public class ChampionDetailBot extends BaseBot {
             listNameChamp.add(elementName.text());
         }
         for (String nameUpdate : listNameChamp) {
-            championBotDatabase.updateTierChampion(nameUpdate, database.table.champion);
+            championBotDatabase.updateTierChampionByName(nameUpdate, database.table.champion);
         }
 
         appLogger.info(String.format("list champion has %s item", i));
     }
 
-    @Override
-    public void run() {
-        super.run();
-        toolkit.appLogger.info("prepare");
-        getAllChampion();
-        complete();
-    }
 }

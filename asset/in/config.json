@@ -8,9 +8,9 @@
     "table": {
       "wallpaper": "wallpaper",
       "champion": "champion",
-      "champion_list": "champion_list",
       "item": "item",
-      "item_for_champion": "item_for_champion"
+      "item_for_champion": "item_for_champion",
+      "abilities": "abilities"
     }
   },
   "time": {

@@ -21,6 +21,14 @@ public class WallpaperBot extends BaseBot {
         toolkit.appLogger.info("create");
     }
 
+    @Override
+    public void run() {
+        super.run();
+        toolkit.appLogger.info("prepare");
+        getWallpaperFromWeb();
+        complete();
+    }
+
     public void getWallpaperFromWeb() {
         executor.execute(() -> {
             try {
@@ -52,11 +60,4 @@ public class WallpaperBot extends BaseBot {
         wallpaperBotDatabase.insertWallpaper(database.table.wallpaper, wallpapers);
     }
 
-    @Override
-    public void run() {
-        super.run();
-        toolkit.appLogger.info("prepare");
-        getWallpaperFromWeb();
-        complete();
-    }
 }
