@@ -120,9 +120,10 @@ public class ChampionBotDatabase extends BaseBotDatabase {
         toolkit.appLogger.info(String.format("update data into table[%s]", table));
         appSql.connect(connection -> {
             try {
-                String sql = "UPDATE champion "
+                String sql = String.format("UPDATE %s "
                         + "SET description = ? "
-                        + "WHERE id = ?";
+                        + "WHERE id = ?",
+                        table);
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setString(1, des);
                 ps.setInt(2, id);
@@ -142,9 +143,10 @@ public class ChampionBotDatabase extends BaseBotDatabase {
         toolkit.appLogger.info(String.format("update data into table[%s]", table));
         appSql.connect(connection -> {
             try {
-                String sql = "UPDATE champion "
+                String sql = String.format("UPDATE %s "
                         + "SET tier = 's' "
-                        + "WHERE name = ?";
+                        + "WHERE name = ?",
+                        table);
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setString(1, name);
                 ps.executeUpdate();

@@ -7,15 +7,17 @@ import java.util.concurrent.Executors;
 
 public class BaseBot {
     protected boolean isRunning;
+    public int priority;
     protected long lastRun;
     protected long restTime;
     protected Toolkit toolkit;
     protected ExecutorService executor;
 
-    public BaseBot(int maxThread, long restTime) {
+    public BaseBot(int maxThread, long restTime, int priority) {
         this.isRunning = false;
         this.restTime = restTime;
         this.lastRun = 0;
+        this.priority = priority;
         this.toolkit = new Toolkit();
         this.executor = Executors.newFixedThreadPool(Math.max(maxThread, AppData.threadDefault));
     }

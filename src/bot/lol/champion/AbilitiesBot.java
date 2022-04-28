@@ -19,7 +19,7 @@ public class AbilitiesBot extends BaseBot {
     private AppStorage appStorage = AppStorage.getInstance();
 
     public AbilitiesBot(int maxThread, long restTime) {
-        super(maxThread, restTime);
+        super(maxThread, restTime, 2);
         toolkit.appLogger.info("create");
     }
 
@@ -27,7 +27,7 @@ public class AbilitiesBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-        //getAllAbilities();
+         getAllAbilities();
         complete();
     }
 

@@ -18,7 +18,7 @@ public class ChampionHomeBot extends BaseBot {
     private AppStorage appStorage = AppStorage.getInstance();
 
     public ChampionHomeBot(int maxThread, long restTime) {
-        super(maxThread, restTime);
+        super(maxThread, restTime, 1);
         toolkit.appLogger.info("create");
     }
 
@@ -26,7 +26,7 @@ public class ChampionHomeBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-        getListChampion();
+         getListChampion();
         complete();
     }
 

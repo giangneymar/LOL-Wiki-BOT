@@ -13,7 +13,7 @@ import java.util.*;
 public class ItemBot extends BaseBot {
 
     public ItemBot(int maxThread, long restTime) {
-        super(maxThread, restTime);
+        super(maxThread, restTime, 2);
         toolkit.appLogger.info("create");
     }
 
@@ -21,7 +21,7 @@ public class ItemBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-        //getAllItemForChampion();
+        getAllItemForChampion();
         complete();
     }
 
@@ -145,4 +145,5 @@ public class ItemBot extends BaseBot {
         }
         return kq.toString().trim();
     }
+
 }

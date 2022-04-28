@@ -20,7 +20,7 @@ public class ChampionDetailBot extends BaseBot {
     private AppStorage appStorage = AppStorage.getInstance();
 
     public ChampionDetailBot(int maxThread, long restTime) {
-        super(maxThread, restTime);
+        super(maxThread, restTime, 2);
         toolkit.appLogger.info("create");
     }
 
@@ -34,29 +34,23 @@ public class ChampionDetailBot extends BaseBot {
 
     public void updateDetailChampion() {
         executor.execute(() -> {
-            toolkit.appLogger.info("start crawl");
-            toolkit.appLogger.info("crawl allChampion");
-            new java.util.Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    try {
-                        crawlChampionDetail("https://leagueoflegends.fandom.com/wiki/League_of_Legends_Wiki",
-                                "https://lol.garena.com/champions",
-                                "https://mobalytics.gg/blog/lol-tier-list-for-climbing-solo-queue/");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, 10000, 0);
+            try {
+                toolkit.appLogger.info("start crawl");
+                toolkit.appLogger.info("crawl allChampion");
+                crawlChampionDetail("https://leagueoflegends.fandom.com/wiki/League_of_Legends_Wiki",
+                        "https://lol.garena.com/champions",
+                        "https://mobalytics.gg/blog/lol-tier-list-for-climbing-solo-queue/");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
     public void crawlChampionDetail(String link, String link1, String link2) throws IOException, SQLException {
         ChampionBotDatabase championBotDatabase = new ChampionBotDatabase();
         Database database = appStorage.config.database;
-
         String classes, resource, blueEssence, riotPoints,
                 releaseDate, adaptiveType, health, healthRegen, armor, attackDamage,
                 magicResist, moveSpeed, attackRange, bonusAS, description;

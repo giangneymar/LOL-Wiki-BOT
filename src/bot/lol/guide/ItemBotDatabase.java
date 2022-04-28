@@ -31,7 +31,6 @@ public class ItemBotDatabase extends BaseBotDatabase {
                 ps.setString(6, image);
                 ps.setString(7, description);
                 ps.executeUpdate();
-                toolkit.appLogger.info(String.format("insert success", table));
                 ps.close();
                 connection.close();
             } catch (Exception e) {
@@ -52,7 +51,6 @@ public class ItemBotDatabase extends BaseBotDatabase {
                 ps.setInt(1, championId);
                 ps.setInt(2, itemId);
                 ps.executeUpdate();
-                toolkit.appLogger.info(String.format("insert success", table));
                 ps.close();
                 connection.close();
             } catch (Exception e) {
@@ -83,4 +81,9 @@ public class ItemBotDatabase extends BaseBotDatabase {
         });
         return item.id;
     }
+
+    public class Item {
+        int id = - 1;
+    }
+
 }

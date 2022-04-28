@@ -1,3 +1,5 @@
+package run;
+
 import bot.BaseBot;
 import com.google.gson.Gson;
 import org.reflections.Reflections;
@@ -70,8 +72,17 @@ public class Main {
                 public void run() {
                     appLogger.info("schedule checking");
                     long now = System.currentTimeMillis();
+                    int max = 0;
+                    List<BaseBot> baseBotList = new ArrayList<>();
                     for (BaseBot bot : bots) {
-                        if (bot.isNeedRun(now)) bot.run();
+                        bot.run();
+                        if (bot.priority >= max) {
+                            bot.priority = max;
+                            baseBotList.add(bot);
+                        }
+                    }
+                    for (BaseBot botList : baseBotList) {
+                        if (botList.isNeedRun(now)) botList.run();
                     }
                 }
             }, delay, period);

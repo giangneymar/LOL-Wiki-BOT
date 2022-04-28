@@ -17,7 +17,7 @@ public class WallpaperBot extends BaseBot {
     private AppStorage appStorage = AppStorage.getInstance();
 
     public WallpaperBot(int maxThread, long restTime) {
-        super(maxThread, restTime);
+        super(maxThread, restTime, 2);
         toolkit.appLogger.info("create");
     }
 
