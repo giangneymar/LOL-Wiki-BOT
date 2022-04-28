@@ -25,7 +25,7 @@ public class WallpaperBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-        getWallpaperFromWeb();
+        //getWallpaperFromWeb();
         complete();
     }
 

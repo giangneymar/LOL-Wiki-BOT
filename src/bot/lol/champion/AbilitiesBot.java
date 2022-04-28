@@ -27,7 +27,7 @@ public class AbilitiesBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-        getAllAbilities();
+        //getAllAbilities();
         complete();
     }
 

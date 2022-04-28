@@ -21,7 +21,7 @@ public class ItemBot extends BaseBot {
     public void run() {
         super.run();
         toolkit.appLogger.info("prepare");
-        getAllItemForChampion();
+        //getAllItemForChampion();
         complete();
     }
 
