@@ -15,4 +15,12 @@ public class DatabaseTable {
     @SerializedName("champion_list")
     @Expose
     public String champion_list;
+
+    @SerializedName("item")
+    @Expose
+    public String item;
+
+    @SerializedName("item_for_champion")
+    @Expose
+    public String item_for_champion;
 }

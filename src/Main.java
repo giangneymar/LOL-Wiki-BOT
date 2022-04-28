@@ -29,8 +29,6 @@ public class Main {
         appLogger.info("start schedules");
         BotControl botControl = new BotControl();
         botControl.run();
-        Server server = new Server();
-        server.API();
     }
 
     public static class BotControl {
@@ -57,7 +55,7 @@ public class Main {
                 if (clazz == null) continue;
                 try {
                     Constructor constructor = clazz.getConstructor(int.class, long.class);
-                    Object bot = constructor.newInstance(5, 15 * 60 * 1000);
+                    Object bot = constructor.newInstance(appStorage.config.time.maxThread, appStorage.config.time.restTime * 60 * 1000);
                     bots.add((BaseBot) bot);
                     appLogger.info(String.format("create bot[ %s ] success", clazz.getName()));
                 } catch (Exception e) {

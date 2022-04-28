@@ -36,20 +36,4 @@ public class WallpaperBotDatabase extends BaseBotDatabase {
             }
         });
     }
-    public ArrayList<Wallpaper> getAllWallpaper() {
-        ArrayList<Wallpaper> wallpapers = new ArrayList<>();
-        appSql.connect(connection -> {
-            String sql = "SELECT * FROM wallpaper";
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                Wallpaper wallpaper = new Wallpaper(
-                        rs.getInt(1),
-                        rs.getString(2)
-                );
-                wallpapers.add(wallpaper);
-            }
-        });
-        return wallpapers;
-    }
 }

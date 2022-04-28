@@ -8,11 +8,17 @@
     "table": {
       "wallpaper": "wallpaper",
       "champion": "champion",
-      "champion_list": "champion_list"
+      "champion_list": "champion_list",
+      "item": "item",
+      "item_for_champion": "item_for_champion"
     }
   },
+  "time": {
+    "maxThread": 5,
+    "restTime": 15
+  },
   "setting": {
-    "timeCheck": 1
+    "timeCheck": 60
   },
   "logger": {
     "isLog": true,

@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import storage.models.database.Database;
 import storage.models.logger.Logger;
 import storage.models.setting.Setting;
+import storage.models.time.Time;
 
 public class Config {
     @SerializedName("database")
@@ -16,4 +17,7 @@ public class Config {
     @SerializedName("logger")
     @Expose
     public Logger logger;
+    @SerializedName("time")
+    @Expose
+    public Time time;
 }
