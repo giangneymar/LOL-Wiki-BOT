@@ -30,10 +30,4 @@ public class BaseBot {
         isRunning = false;
         lastRun = System.currentTimeMillis();
     }
-
-    public boolean isNeedRun(long now) {
-        //  run();
-        toolkit.appLogger.debug(String.format("isRunning[%s] - last[%s] - rest[%s] - now[%s]", isRunning, lastRun, restTime, now));
-        return (!isRunning && (lastRun + restTime < now));
-    }
 }

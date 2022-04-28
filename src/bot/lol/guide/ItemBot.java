@@ -23,18 +23,7 @@ public class ItemBot extends BaseBot {
             toolkit.appLogger.info("crawl equipment for champion");
             try {
                 crawlItem("https://www.mobafire.com/league-of-legends/items");
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        try {
-                            crawlItemForChampion("https://www.mobafire.com/league-of-legends/champions");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                Timer timer = new Timer("Timer");
-                timer.schedule(timerTask, 0, 300000);
+                crawlItemForChampion("https://www.mobafire.com/league-of-legends/champions");
             } catch (IOException e) {
                 e.printStackTrace();
             }

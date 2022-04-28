@@ -2,12 +2,8 @@ package bot.lol.wallpaper;
 
 import bot.BaseBotDatabase;
 import org.jsoup.internal.StringUtil;
-import storage.models.Wallpaper;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WallpaperBotDatabase extends BaseBotDatabase {

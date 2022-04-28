@@ -1,14 +1,9 @@
 package bot;
 
 import org.jsoup.internal.StringUtil;
-import storage.models.Wallpaper;
 import utils.AppSql;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BaseBotDatabase {
     protected Toolkit toolkit;
